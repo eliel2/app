@@ -1,0 +1,47 @@
+
+<section>
+    <table>
+        <thead>
+    
+            <tr>
+                <th>{{titulos.name}}</th>
+                
+                <th>{{titulos.price}}</th>
+                <th>{{titulos.stock}}</th>
+                <th>{{titulos.image}}</th>
+               
+            </tr>
+        </thead>
+       
+        
+        <tbody>
+                <tr *ngFor="let beer of beers" 
+                [ngClass]="{
+                    'gren': beer.stock >10,
+                    'red': beer.stock ==0
+                             }">
+                    <td>{{beer.name}}</td>
+                   
+                    <td>{{beer.price | currency}}</td>
+                    
+
+                   
+                  
+                    
+                    <span>
+                        <td *ngIf="beer.stock ==0" >agotado</td>
+                    </span>
+                    <span>
+                        <td *ngIf="beer.stock > 0" > {{beer.stock}}</td>
+                    </span>
+                    <span>
+                         <button (click)="masbeer(beer)">+</button>
+                        <input type="text" [(ngModel)]= "beer.stock"(keypress)="solonumeros($event)">
+                       
+                    </span>
+                    <button (click) = "menosCerveza (beer)">-</button>
+                    <td><img [src]=beer.image [alt]=beer.name></td>
+                </tr>
+        </tbody>
+    </table>
+</section>
